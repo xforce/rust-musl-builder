@@ -1,11 +1,11 @@
 # `rust-musl-builder`: Docker container for easily building static Rust binaries
 
-[![Docker Image](https://img.shields.io/docker/pulls/ekidd/rust-musl-builder.svg?maxAge=2592000)](https://hub.docker.com/r/ekidd/rust-musl-builder/)
+[![Docker Image](https://img.shields.io/docker/pulls/cookiemagic/rust-musl-builder.svg?maxAge=2592000)](https://hub.docker.com/r/cookiemagic/rust-musl-builder/)
 
 - [Source on GitHub](https://github.com/emk/rust-musl-builder)
 - [Changelog](https://github.com/emk/rust-musl-builder/blob/master/CHANGELOG.md)
 
-**UPDATED:** Major updates in this release which may break some builds. See [the CHANGELOG](https://github.com/emk/rust-musl-builder/blob/master/CHANGELOG.md) for details. If these updates break your build, you can update your `Dockerfile` to use `FROM ekidd/rust-musl-builder:1.48.0` to revert to the previous version.
+**UPDATED:** Major updates in this release which may break some builds. See [the CHANGELOG](https://github.com/cookiemagic/rust-musl-builder/blob/master/CHANGELOG.md) for details. If these updates break your build, you can update your `Dockerfile` to use `FROM cookiemagic/rust-musl-builder:1.48.0` to revert to the previous version.
 
 ## What is this?
 
@@ -14,7 +14,7 @@ This image allows you to build static Rust binaries using `diesel`, `sqlx` or `o
 To try it, run:
 
 ```sh
-alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
+alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src cookiemagic/rust-musl-builder'
 rust-musl-builder cargo build --release
 ```
 
@@ -81,10 +81,6 @@ This library also sets up the environment variables needed to compile popular Ru
 This image also supports the following extra goodies:
 
 - Basic compilation for `armv7` using `musl-libc`. Not all libraries are supported at the moment, however.
-- [`mdbook`][mdbook] and `mdbook-graphviz` for building searchable HTML documentation from Markdown files. Build manuals to use alongside your `cargo doc` output!
-- [`cargo about`][about] to collect licenses for your dependencies.
-- [`cargo deb`][deb] to build Debian packages
-- [`cargo deny`][deny] to check your Rust project for known security issues.
 
 ## Making OpenSSL work
 
@@ -156,7 +152,7 @@ Next, copy [`build-release`](./examples/build-release) into your project and run
 Finally, add a `Dockerfile` to perform the actual build:
 
 ```rust
-FROM ekidd/rust-musl-builder
+FROM cookiemagic/rust-musl-builder
 
 # We need to add the source code to the image because `rust-musl-builder`
 # assumes a UID of 1000, but TravisCI has switched to 2000.
